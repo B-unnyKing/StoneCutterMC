@@ -1,0 +1,5 @@
+name "stonecutter"
+description "A Minecraft classic server thats very lightweight."
+authors "BunnyKing"
+copyright "Copyright © 2026, BunnyKing"
+license "AGPL-3.0-or-later"
