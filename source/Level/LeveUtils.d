@@ -6,7 +6,7 @@ void loadFile(string filename) {
 
 }
 
-void saveFile(string filename) {
+void saveFile(string filename, ubyte[512][512][64] worldContainer) {
 
 }
 
