@@ -1,5 +1,8 @@
 module Packets.toServer.PlayerPosAndOri;
 
+import std;
+import Packets.Packet;
+
 class PlayerPosAndOri : Packet {
     immutable ubyte packetID = 0x08;
     ubyte playerID;
@@ -29,6 +32,6 @@ class PlayerPosAndOri : Packet {
         data.put(yaw);
         data.put(pitch);
 
-        return data;
+        return data.data;
     }
 }
