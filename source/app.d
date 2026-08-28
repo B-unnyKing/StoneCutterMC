@@ -1,6 +1,8 @@
 import std;
+import server;
 
 void main()
 {
-	writeln("Edit source/app.d to start your project.");
+	setupServerSocket();
+	
 }

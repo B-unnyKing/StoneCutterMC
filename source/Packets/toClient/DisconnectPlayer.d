@@ -1,6 +1,18 @@
 module Packets.toClient.DisconnectPlayer;
-
-class DisconnectPlayer {
-    ubyte packetID = 0x0e;
+import Packets.Packet;
+import std.array : Appender;
+class DisconnectPlayer : Packet {
+    immutable ubyte packetID = 0x0e;
     string reason;
+
+    this(string reason) {
+        this.reason = reason;
+    }
+
+    ubyte[] serialize() {
+        Appender!(ubyte[]) data;
+        data.put(packetID);
+        appendFixedString(data, reason);
+        return data.data;
+    }
 }

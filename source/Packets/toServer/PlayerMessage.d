@@ -1,8 +1,9 @@
-module Packets.toClient.Message;
+module Packets.toServer.PlayerMessage;
 import Packets.Packet;
+import std;
 import std.array : Appender;
-class Message : Packet {
-    immutable ubyte packetID = 0x0d;
+class PlayerMessage : Packet {
+    immutable ubyte packetID = 0x08;
     byte playerID;
     string message;
 
@@ -13,8 +14,9 @@ class Message : Packet {
 
     ubyte[] serialize() {
         Appender!(ubyte[]) data;
+
         data.put(packetID);
-        appendBigEndian(data, playerID);
+        data.put(playerID);
         appendFixedString(data, message);
         return data.data;
     }
