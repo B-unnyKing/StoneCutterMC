@@ -2,6 +2,7 @@ module Packets.toServer.PlayerSetBlock;
 import Packets.Packet;
 import std;
 import std.array : Appender;
+import std.bitmanip;
 class PlayerSetBlock : Packet {
     immutable ubyte packetID = 0x05;
     short x;
@@ -29,4 +30,18 @@ class PlayerSetBlock : Packet {
 
         return data.data;
     }
+}
+
+PlayerSetBlock decodePlayerSetBlock(ubyte[] data) {
+    if (data.length < 9) {
+        throw new Exception("PlayerSetBlock packet too short");
+    }
+
+    return new PlayerSetBlock(
+        bigEndianToNative!short(data[1 .. 3]),
+        bigEndianToNative!short(data[3 .. 5]),
+        bigEndianToNative!short(data[5 .. 7]),
+        data[7],
+        data[8]
+    );
 }

@@ -27,3 +27,30 @@ class PlayerIdentification : Packet {
         return data.data;
     }
 }
+
+string decodeFixedString(const(ubyte)[] data, size_t offset, size_t length) {
+    size_t end = offset + length;
+    if (end > data.length) {
+        end = data.length;
+    }
+
+    while (end > offset && data[end - 1] == ' ') {
+        --end;
+    }
+
+    return cast(string) cast(char[]) data[offset .. end];
+}
+
+PlayerIdentification decodePlayerIdentification(ubyte[] data) {
+    if (data.length < 131) {
+        throw new Exception("PlayerIdentification packet too short");
+    }
+
+    return new PlayerIdentification(
+        data[1],
+        decodeFixedString(data, 2, 64),
+        decodeFixedString(data, 66, 64),
+        data[130]
+    );
+}
+

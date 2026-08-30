@@ -1,8 +1,10 @@
 import std;
 import server;
+import Tests;
+
 
 void main()
 {
-	mainTickLoop();
+	//testWorld();
 	
 }
