@@ -79,5 +79,27 @@ struct ClassicWorld {
         }
     }
 
-    // ... loadFromFile code remains the same but assigns to `_blocks` ...
+    void loadFromFile(string filename) {
+        try {
+            // 1. Read and decompress the file data
+            ubyte[] compressedData = cast(ubyte[]) read(filename);
+            ubyte[] rawData = cast(ubyte[]) uncompress(compressedData);
+
+            // 2. Extract the packet header metadata (skip first 4 bytes for magic int)
+            // convert big-endian data back into native numbers
+            this.w = bigEndianToNative!ushort(rawData[4 .. 6]);
+            this.h = bigEndianToNative!ushort(rawData[6 .. 8]);
+            this.d = bigEndianToNative!ushort(rawData[8 .. 10]);
+
+            // 3. Slice the remaining bytes directly into your internal block array
+            this._blocks = rawData[10 .. $].dup; 
+
+            writeln("Successfully read and loaded world from file.");
+        } catch (Exception e) {
+            writeln("An error occurred while reading:");
+            writeln(e.msg);
+        }
+    }
+
+
 }
