@@ -3,6 +3,6 @@ import server;
 
 void main()
 {
-	setupServerSocket();
+	mainTickLoop();
 	
 }

@@ -1,6 +1,8 @@
 module server;
 
 import std;
+import Packets.Packet;
+
 
 void setupServerSocket() {
     ushort port = 25565;
@@ -14,4 +16,18 @@ void setupServerSocket() {
     readln();
 }
 
+Packet readPacketFromClient(ubyte raw) {
 
+}
+
+
+void mainTickLoop() {
+
+    while (true) {
+
+
+        
+
+    }
+
+}
