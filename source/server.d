@@ -4,6 +4,8 @@ import std;
 import Packets.Packet;
 import Level.Level;
 import Blocks.BlockID;
+import core.thread : Thread;
+import core.time : MonoTime, Duration, msecs;
 
 
 void handleClient(TcpSocket client) {
@@ -45,7 +47,22 @@ void handleClient(TcpSocket client) {
 
 void mainTickLoop() {
 
-    while (true) {
+    enum Duration tickRate = 50.msecs; 
+
+    while (true) { 
+
+        MonoTime startTime = MonoTime.currTime;
+
+        //code starts here
+
+
+        //code ends here
+
+        Duration elapsed = MonoTime.currTime - startTime;
+
+        if (elapsed < tickRate) {
+            Thread.sleep(tickRate - elapsed);
+        }
 
     }
 

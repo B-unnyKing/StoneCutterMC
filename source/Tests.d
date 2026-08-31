@@ -10,7 +10,7 @@ import Blocks.BlockID;
 void testWorld() {
     string nameOfSave = "testWorld";
     auto world = new ClassicWorld(512,64,512);
-    setFlatTerrain("world");
+    world.setLayer(1, stone);
     
     world.saveToFile(nameOfSave);
 
