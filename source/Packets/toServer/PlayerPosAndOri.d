@@ -22,7 +22,7 @@ class PlayerPosAndOri : Packet {
         this.pitch = pitch;
     }
 
-    ubyte[] serialize() {
+    override ubyte[] serialize() {
         Appender!(ubyte[]) data;
 
         data.put(packetID);

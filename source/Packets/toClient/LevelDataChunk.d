@@ -13,5 +13,14 @@ class LevelDataChunk : Packet {
         this.percentComplete = percentComplete;
 
     }
+
+    override ubyte[] serialize() {
+        Appender!(ubyte[]) data;
+        data.put(packetID);
+        appendBigEndian(data, chunkLength);
+        data.put(levelData[0 .. chunkLength]);
+        data.put(percentComplete);
+        return data.data;
+    }
     
 }

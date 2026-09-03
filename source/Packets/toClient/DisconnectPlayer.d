@@ -9,7 +9,7 @@ class DisconnectPlayer : Packet {
         this.reason = reason;
     }
 
-    ubyte[] serialize() {
+    override ubyte[] serialize() {
         Appender!(ubyte[]) data;
         data.put(packetID);
         appendFixedString(data, reason);

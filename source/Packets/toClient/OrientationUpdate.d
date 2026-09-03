@@ -13,7 +13,7 @@ class OrientationUpdate : Packet {
         this.pitch = pitch;
     }
 
-    ubyte[] serialize() {
+    override ubyte[] serialize() {
         Appender!(ubyte[]) data;
         data.put(packetID);
         data.put(cast(ubyte) playerID);

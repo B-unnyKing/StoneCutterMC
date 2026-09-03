@@ -23,4 +23,6 @@ class Packet {
             data.put(padding);
         }
     }
+    
+    abstract ubyte[] serialize();
 }

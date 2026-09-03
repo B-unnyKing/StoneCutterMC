@@ -19,7 +19,7 @@ class PlayerSetBlock : Packet {
         this.blockType = blockType;
     }
 
-    ubyte[] serialize() {
+    override ubyte[] serialize() {
         Appender!(ubyte[]) data;
         data.put(packetID);
         appendBigEndian(data, x);

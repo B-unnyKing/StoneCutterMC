@@ -13,7 +13,7 @@ class LevelFinalize : Packet {
         this.zSize = zSize;
     }
 
-    ubyte[] serialize() {
+    override ubyte[] serialize() {
         Appender!(ubyte[]) data;
         data.put(packetID);
         appendBigEndian(data, xSize);

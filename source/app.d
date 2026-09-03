@@ -6,5 +6,6 @@ import Tests;
 void main()
 {
 	//testWorld();
+	putTogether();
 	
 }

@@ -9,7 +9,7 @@ class UpdateUserType : Packet {
         this.userType = userType;
     }
 
-    ubyte[] serialize() {
+    override ubyte[] serialize() {
         Appender!(ubyte[]) data;
         data.put(packetID);
         data.put(userType);

@@ -6,7 +6,7 @@ class LevelInitialize : Packet {
 
     this() {}
 
-    ubyte[] serialize() {
+    override ubyte[] serialize() {
         Appender!(ubyte[]) data;
         data.put(packetID);
         return data.data;

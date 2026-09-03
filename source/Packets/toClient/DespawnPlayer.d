@@ -9,7 +9,7 @@ class DespawnPlayer : Packet {
         this.playerID = playerID;
     }
 
-    ubyte[] serialize() {
+    override ubyte[] serialize() {
         Appender!(ubyte[]) data;
         data.put(packetID);
         appendBigEndian(data, playerID);
