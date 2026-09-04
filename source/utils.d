@@ -1,4 +1,4 @@
-module server;
+module utils;
 
 import std;
 import Packets.Packet;
@@ -74,45 +74,7 @@ void handleClient(TcpSocket client) {
 
 
 
-void putTogether() {
 
-
-    //Creating socket and writing debug code.
-    ushort port = 25565;
-    writeln("creating TCP socket...");
-    auto server = new TcpSocket();
-    server.blocking = false;
-    writeln("binging to internet adress and new port");
-    server.bind(new InternetAddress(port));
-    writeln("bound successfully to internet adress and port!");
-    writeln("server listening on port ", port);
-
-    CheckForWorld();
-
-    enum Duration tickRate = 50.msecs; 
-
-    while (true) { 
-
-        MonoTime startTime = MonoTime.currTime;
-
-        //code starts here
-
-        handleClient(server);
-        
-        handleTerminalCommands();
-
-        //code ends here
-
-        Duration elapsed = MonoTime.currTime - startTime;
-
-        if (elapsed < tickRate) {
-            Thread.sleep(tickRate - elapsed);
-        }
-
-    }
-
-
-}
 
 void sendPacket(Socket socket, Packet packet) {
     if (socket is null || !socket.isAlive) return;
@@ -134,3 +96,13 @@ void handleTerminalCommands() {
     }
 }
 
+void createServer() {
+    ushort port = 25565;
+    writeln("creating TCP socket...");
+    auto server = new TcpSocket();
+    server.blocking = false;
+    writeln("binging to internet adress and new port");
+    server.bind(new InternetAddress(port));
+    writeln("bound successfully to internet adress and port!");
+    writeln("server listening on port ", port);
+}

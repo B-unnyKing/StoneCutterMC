@@ -5,18 +5,22 @@ import Blocks.BlockID;
 import Level.Level;
 import server;
 
-void CheckForWorld() {
 
-    __gshared string filepath = "world";
 
-    if (exists(filepath)) {
+class SaveHelperClass {
 
-        writeln("world file exists. Use filepath:", filepath);
-    } else {
+    void checkForWorld() {
 
-        auto testWorld = new ClassicWorld(512,64,512);
-        testWorld.setLayer(1, stone);
-        testWorld.saveToFile(filepath);
+        string worldFilePath;
+
+        if (exists(worldFilePath)) {
+
+            writeln("world file exists. Use filepath:", worldFilePath);
+        } else {
+
+            auto testWorld = new ClassicWorld(512,64,512);
+            testWorld.setLayer(1, stone);
+            testWorld.saveToFile(worldFilePath);
+        }
     }
-
 }
